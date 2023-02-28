@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Find } from './Find.jsx';
 import { Likes } from './Likes.jsx';
 import { Bio } from './Bio.jsx';
