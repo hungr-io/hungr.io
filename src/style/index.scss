@@ -29,7 +29,7 @@ body {
   padding: 0 3.5rem;
   height: 120px;
   border: none;
-  gap: 5rem;
+  gap: 3.75rem;
   margin-bottom: 0;
   position: sticky; 
   bottom: 0;
@@ -46,6 +46,8 @@ body {
   border-radius: 40px;
   min-height: 80px;
   min-width: 80px;
+  max-width: 80px;
+  max-height: 80px;
   // background-color: red;
 }
 
@@ -129,6 +131,80 @@ button:hover {
   min-height: 2.5rem;
 }
 
+.find {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.findSettings {
+  display: flex;
+  flex-direction: row!important;
+  justify-content: space-between;
+  gap: 5rem;
+  margin: 1rem 0;
+
+}
+
+.searchInput {display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px;
+  border: 2px solid;
+  min-width: 6rem;
+
+}
+
+.findArea {
+  box-shadow: 0px 2px 8px;
+  border-radius: 15px;
+  border: none;
+}
+
+.findResult {
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px;
+  max-width: 95%;
+}
+
+.resultArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px;
+  max-width: 98%;
+  min-height: 20rem;
+  // min-width: 99%;
+  margin: 1rem 1rem;
+}
+
+.response {
+  display: flex;
+  flex-direction: row!important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 20px;
+  padding: 0 4rem;
+}
+
+.res {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 45px;
+  box-shadow: 0px 2px 8px;
+  min-height: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  max-height: 80px;
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
