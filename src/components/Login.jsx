@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link, useLocation,  Link  } from 'react-router-dom';
+import { useNavigate, Link, useLocation  } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
@@ -13,7 +13,10 @@ export const Login = () => {
   
 
   const handleLogin = async (e, loginMethod, data) => {
-    // e.preventDefault();
+    if (loginMethod === 'manual') {
+      e.preventDefault();
+    };
+
     console.log('this is my data: ', data);
     const emailValue = data.email // document.getElementById("login-username").value;
     const passwordValue = data.password // document.getElementById("login-password").value;
@@ -59,15 +62,10 @@ export const Login = () => {
       
       <div className="app_signup_google">
         <GoogleLogin 
-          clientId={import.meta.env_VITE_GOOGLE_CLIENT_ID}
           buttonText="Login with Google"
           onSuccess={async (credResponse) => {
             var decoded = await jwt_decode(credResponse.credential);
-            console.log(decoded);
-            console.log('google email: ', decoded.email);
-            console.log('google sub: ', decoded.sub);
-            const { email, sub } = decoded; 
-            handleLogin('google', { 'email': email, 'password': sub });}
+            handleLogin(null, 'google', decoded);}
           }
           onFailure={() => console.log('login failed')}
           cookiePolicy="single_host_origin"          

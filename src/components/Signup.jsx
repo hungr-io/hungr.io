@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import useFetch from '../hooks/useFetch';
+
 
 
 export const Signup = () => {
-  const { handleGoogle, loading, error } = useFetch('/signup');
 
   useEffect(() => {
     if (window.google) {
