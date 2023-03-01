@@ -51,7 +51,7 @@ function App() {
           {/* route to login */}
           <Route
             path="/"
-            element={<Login setUser={setUser} user={user} selectedPage={selectedPage} />}
+            element={<Login userData={userData} setUserData={setUserData} setUser={setUser} user={user} selectedPage={selectedPage} />}
           />
           {/* route to navbar/header */}
           <Route path="/home/*" element={<Home user={user} />} />
