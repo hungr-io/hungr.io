@@ -11,29 +11,35 @@ export const Login = () => {
   const navigate = useNavigate();
   
 
-  // const handleLogin = async googleData => {
-  //   const res = await fetch("/api/v1/auth/google", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //       token: googleData.tokenId
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   })
-  //   const data = await res.json()
-  //   // store returned user somehow -----> BACKENDDDDD
-  // }
+  const handleLogin = async (e, loginMethod, data) => {
+    // e.preventDefault();
+    console.log('this is my data: ', data);
+    const emailValue = data.email // document.getElementById("login-username").value;
+    const passwordValue = data.password // document.getElementById("login-password").value;
+    console.log('emails: ', emailValue);
+    console.log('passwords: ', passwordValue);
 
-  document.addEventListener('submit', () => {
+    // conditional fetching: manual login or google token
+    // const res = await fetch("/", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     "email": document.getElementById("login-username").value,
+    //     "password": document.getElementById("login-password").value  
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   }
+    // })
+    // const data = await res.json()
+    // // store returned user somehow -----> BACKENDDDDD
+  }
 
-  });
 
 
   return (
     <div>    
       
-        <form id="login-form" className="form" onSubmit>
+        <form id="login-form" className="form" onSubmit={(e) => handleLogin(e, 'manual', { 'email': document.getElementById("login-username").value, 'password': document.getElementById("login-password").value})}>
             <h1>Welcome back</h1>
             <div className="form-control-login">   
                 <input type="text" id="login-username" className="form-input-login" placeholder="Email" />              
@@ -54,10 +60,13 @@ export const Login = () => {
         <GoogleLogin 
           clientId={import.meta.env_VITE_GOOGLE_CLIENT_ID}
           buttonText="Login with Google"
-          onSuccess={credResponse => {
-            var decoded = jwt_decode(credResponse.credential);
+          onSuccess={async (credResponse) => {
+            var decoded = await jwt_decode(credResponse.credential);
             console.log(decoded);
-          }
+            console.log('google email: ', decoded.email);
+            console.log('google sub: ', decoded.sub);
+            const { email, sub } = decoded; 
+            handleLogin('google', { 'email': email, 'password': sub });}
           }
           onFailure={() => console.log('login failed')}
           cookiePolicy="single_host_origin"          
