@@ -38,13 +38,13 @@ app.post('/signin', authController.userSignup, (req, res) => {
 
 
 // find Restaurant middleware
-app.get('/find', findController.findNew, (req, res) => {
-  console.log(res.locals.findData)
+app.post('/find', findController.findNew, (req, res) => {
+  // console.log(res.locals.findData)
   return res.status(200).json(res.locals.findData);
 });
 
 // create new liked restaurant middleware
-app.put('/find', likedController.newLike, (req, res) => {
+app.put('/likes', likedController.newLike, (req, res) => {
   return res.status(200).json(res.locals.rest);
 });
 

@@ -1,29 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import profileTemp from '/src/assets/profile.jpg'
 
-export const Bio = ({user, setGreeting, zipcode}) => {
+
+export const Bio = ({user, setGreeting, zip, img, setImg}) => {
   useEffect(() => {
     setGreeting(`Welcome, ${user}`)
   }, [user]);
 
-  const editProfile = () => {
+  const editImg = async () => {
     console.log('editing profile...')
-    //POST req stuff
+
+    // var inputDiv = document.querySelector('.inputDiv')
+    // var input = document.querySelector('.inputDiv input')
+    // input.addEventListener('change', () => {
+    //   let files = input.files
+    //   console.log(files)
+    // })
+
   }
+
+  useEffect(() => {
+    var inputDiv = document.querySelector('.inputDiv')
+    var input = document.querySelector('.inputDiv input')
+    input.addEventListener('change', () => {
+      let files = input.files[0]
+      console.log(files)
+      files = URL.createObjectURL(files)
+      console.log(files)
+      setImg(files);
+
+
+    })
+  }, [editImg])
+
+  
+console.log(img)
 
   return (
     <div className='bio'>
       <div className='image'>
-        <img src={profileTemp}></img>
+        <img className='bioImg' src={img} />
       </div>
-      <a onClick={editProfile} style={{margin: '-40px 0 20px 0'}} >Change Image</a>
+      <div className='inputDiv'>
+        {/* <label for="files">Select Image</label> */}
+        <label for='file' className='browse'>Upload Image</label>
+        <input id='file' type='file' className='file' multiple='multiple' accept='image/png, image/jpeg, image/jpg'
+        // onClick={editImg} 
+        style={{display: 'none'}}
+          >
+        </input>
+        {/* <button onClick={editImg}>Upload Image</button> */}
+      </div>
       <div className='zipBio'>
-        {zipcode}
+        {zip}
       </div>
       <div className='userBio'>
         {user}
       </div>
-      <button onClick={editProfile}>Edit</button>
+      <button>Edit</button>
       <button>Log Out</button>
 
     </div>

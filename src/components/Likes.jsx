@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import reactIcon from '/src/assets/react.svg'
+import reactIcon from '/src/assets/heart.png'
 
 
-export const Likes = ({user, setGreeting}) => {
+export const Likes = ({user, setGreeting, likes, setLikes}) => {
   
-  const [likes, setLikes] = useState([]);
+  
 
   
   useEffect(() => {
@@ -13,21 +13,35 @@ export const Likes = ({user, setGreeting}) => {
     // console.log(likes) 
   }, [user]);
 
+  const getPrice = (data) => {
+    let price = ''
+    for (let i = 0; i < data?.price; i++) {
+      price += '$'
+    }
+    console.log(price);
+    return price;
+  }
+
   const getLikes = () => {
     console.log('getting likes...')
     //fetch likes
-    fetch('api/getLikes')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      setLikes(data);
-    })
-    .catch(err => console.log(err))
-    //set likes state for dev
-    setLikes([{name: 'McDonalds', price: '$', img: reactIcon}, 
-      {name: 'Pizza Hut', price: '$$', img: reactIcon},
-      {name: 'Sushi Sen', price: '$$$$', img: reactIcon},
-    ]);
+    // fetch('/likes')
+    // .then(res => res.json())
+    // .then(data => {
+    //   console.log(data)
+    //   setLikes(data);
+    // })
+    // .catch(err => console.log(err))
+    // //set likes state for dev
+    // setLikes([{name: 'McDonalds', price: '$', img: reactIcon}, 
+    //   {name: 'Pizza Hut', price: '$$', img: reactIcon},
+    //   {name: 'Sushi Sen', price: '$$$$', img: reactIcon},
+    // ]);
+  }
+
+  const getLink = (url) => {
+    window.open(
+      url, "_blank");
   }
 
   const deleteFav = (id) => {
@@ -46,9 +60,39 @@ export const Likes = ({user, setGreeting}) => {
     })
   }
 
+  const makeArr = () => {
+    if (likes[0]) return likes.map((el, i) => (
+      <div key={i} id={el._id} className='likesContainer'>
+        <div className='likesImg'
+          onClick={() => getLink(el?.url)}>
+          <img src={el.image}
+            width='45'
+          ></img>
+        </div>
+        <div>
+          <div className='likesName'>
+            {el.name}
+          </div>
+          <div>
+            {getPrice(el)}
+          </div>
+          <div>
+            {el.phone}
+          </div>
+        </div>
+        <div >
+          <button className='likesDelBtn' onClick={() => deleteFav(el._id)}>Delete</button>
+        </div>
+      </div>
+    ))
+    else return [];
+  }
+  const likesArr = makeArr()
+
   return (
     <div className='likes'>
-      {likes.map((el, i) => (
+      {likesArr}
+      {/* {likes.map((el, i) => (
         <div key={i} id={el._id} className='likesContainer'>
           <div className='likesImg'>
             <img src={el.img}></img>
@@ -65,7 +109,7 @@ export const Likes = ({user, setGreeting}) => {
             <button className='likesDelBtn' onClick={() => deleteFav(el._id)}>Delete</button>
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   )
 }
