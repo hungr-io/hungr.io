@@ -7,35 +7,7 @@ import { Home } from "./Home.jsx";
 import "../style/login.scss";
 
 export const Login = () => {
-  const [user, setUser] = useState([]);
-  const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
-
-  const handleLogin = async (e, loginMethod, data) => {
-    if (loginMethod === "manual") {
-      e.preventDefault();
-    }
-
-    console.log("this is my data: ", data);
-    const emailValue = data.email; // document.getElementById("login-username").value;
-    const passwordValue = data.password; // document.getElementById("login-password").value;
-    console.log("emails: ", emailValue);
-    console.log("passwords: ", passwordValue);
-
-    // conditional fetching: manual login or google token
-    // const res = await fetch("/", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     "email": document.getElementById("login-username").value,
-    //     "password": document.getElementById("login-password").value
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // })
-    // const data = await res.json()
-    // // store returned user somehow -----> BACKENDDDDD
-  };
 
   return (
     <div className="login-page">
