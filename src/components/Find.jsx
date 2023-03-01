@@ -21,10 +21,27 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants}) => {
       </div>
       <div className='findResult'>
         <div className='resultArea'>
-          <div>
+
+          <div className='resName'>
             {restaurants[0]?.name}
-            {restaurants[0]?.price}
           </div>
+
+          <div className='resImage'>
+            <img src={restaurants[0]?.image_url} 
+            width='135'
+            alt="404" />
+          </div>
+
+          <div className='resBio'>
+            <div>
+              {restaurants[0]?.price}
+            </div>
+            <div>
+            {Math.floor(restaurants[0]?.distance )} meters
+            </div>
+            
+          </div>
+
         </div>
         <div className='response'>
           <div className='res'
@@ -38,14 +55,23 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants}) => {
             <img src={heartIcon}></img>
           </div>
           <div className='res'
+          // href={restaurants[0]?.url}
           style={{backgroundColor: '#6f7cf2'}}
           >
             <img src={arrowIcon}></img>
           </div>
         </div>
         
-        <p className='resultInfo'>{restaurants[0]?.bio}
+        <p className='resultInfo'>
+          {restaurants[0]?.display_phone} <br />
         </p>
+        <div>
+          {restaurants[0]?.categories.map((el, i) => {
+            <div>
+              
+            </div>
+          })}
+        </div>
         </div>
     </div>
   );

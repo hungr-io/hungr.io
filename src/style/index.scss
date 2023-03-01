@@ -181,8 +181,35 @@ button:hover {
   background-color: #C3ED5B;
 }
 
+.resName {
+  margin-bottom: 0.5rem;
+  font-size: larger;
+}
+
+.resImage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center!important;
+  align-items: flex-start;
+  gap: 1rem;
+  // padding: 0 1rem;
+  border: 2px solid;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  // background-color: red;
+}
+
+.resBio {
+  display: flex;
+  flex-direction: row;
+  font-size: larger;
+  // padding: 0 2rem;
+  gap: 1rem 1rem;
+}
+
 .resultArea {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
@@ -190,12 +217,13 @@ button:hover {
   max-width: 98%;
   min-height: 20rem;
   // min-width: 99%;
-  margin: 1rem 1rem;
+  margin: 0 1rem;
   background-color: #F6EEE5;
+  padding: 0 1.5rem;
 }
 
 .resultInfo {
-  padding: 10px 20px 10px 20px;
+  padding: 10px 10px 10px 20px;
 }
 
 .response {
@@ -206,6 +234,7 @@ button:hover {
   gap: 1rem;
   border-radius: 20px;
   padding: 0 4rem;
+  margin: 1rem 0;
 }
 
 .res {

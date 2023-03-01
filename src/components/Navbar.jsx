@@ -19,7 +19,6 @@ export const Navbar = ({setGreeting, user, btnColor, fetchData}) => {
     icon: findIcon,
     label: "Find",
     onClick: fetchData
-
   },{
     route: "/home/bio",
     icon: bioIcon,
@@ -29,7 +28,9 @@ export const Navbar = ({setGreeting, user, btnColor, fetchData}) => {
 
   return (
 
-    <nav style={{border: 'none', boxShadow: '0px 5px 20px'}}className="navbar fixed-bottom navbar-light" role="navigation">
+    <nav style={{border: 'none', 
+    boxShadow: '0px 5px 20px'
+    }}className="navbar fixed-bottom navbar-light" role="navigation">
         <Nav className="w-100">
           <div id='nav' className=" d-flex flex-row justify-content-between w-100">
             {
@@ -43,9 +44,6 @@ export const Navbar = ({setGreeting, user, btnColor, fetchData}) => {
                       style={{backgroundColor: {btnColor}}}>{tab.label}</div>
                     </div>
                   </NavLink>
-                  {/* <div>
-                  {(tabs[index + 2 === 'undefined']) ? '' : '|'}
-                </div> */}
                 </NavItem>
               ))
             }
