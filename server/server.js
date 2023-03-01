@@ -14,12 +14,6 @@ const likedController = require('./Controller/likedController');
 const profileController = require('./Controller/profileController');
 const authController = require('./Controller/authController');
 
-
-const findController = require('./Controller/findController');
-const likedController = require('./Controller/likedController');
-const profileController = require('./Controller/profileController');
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
