@@ -5,7 +5,7 @@ import { Header } from './Header.jsx';
 import { Find } from './Find.jsx';
 import { Bio } from './Bio.jsx';
 import { Likes } from './Likes.jsx';
-import profileTemp from '/src/assets/profile.jpg'
+import profileTemp from '/src/assets/profile.png'
 
 export const Home = ({selectedPage, user}) => {
   const [greeting, setGreeting] = useState(`Welcome,  ${user}`);
