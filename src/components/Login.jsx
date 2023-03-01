@@ -5,6 +5,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import { Home } from "./Home.jsx";
 import "../style/login.scss";
+import tlogo from '../assets/tlogo.png'
 
 export const Login = (props) => {
   const { user, setUser, selectedPage, setSelectedPage } = props;
@@ -58,8 +59,8 @@ export const Login = (props) => {
 
 
   return (
-    <div className="login-page">
-      <div className="login-logo"></div>
+    <div className="login-page" style={{alignSelf: "center", justifySelf: "center", marginTop: "auto", marginBottom: "auto"}}>
+      <div className="login-logo" style={{backgroundImage: `url(${tlogo})`, alignSelf: "center", width: '100%'}}></div>
       <form
         id="login-form"
         className="form"
