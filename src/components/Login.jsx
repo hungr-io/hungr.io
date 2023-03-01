@@ -6,44 +6,48 @@ import jwt_decode from "jwt-decode";
 import { Home } from './Home.jsx'
 
 
-export const Login = () => {
-  const [ user, setUser ] = useState([]);
+export const Login = (props) => {
+  const { user, setUser, selectedPage, setSelectedPage } = props;
   const [ profile, setProfile ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState("");
   const navigate = useNavigate();
   
 
   const handleLogin = async (e, loginMethod, data) => {
-    let emailValue, passwordValue;
+    setLoading(true);
+    console.log(loginMethod, data);
     
     // conditional fetching: manual login or google token
     if (loginMethod === 'manual') {
       e.preventDefault();
-      emailValue = data.email;
-      passwordValue = data.password
     };
 
-    if (loginMethod === 'google') {
-      emailValue = data.email;
-      passwordValue = data.sub
-    }
+    const request = {
+      method: "POST",
+      body: JSON.stringify({
+        "data": data,
+        "loginMethod": loginMethod  
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
 
-    console.log('emails: ', emailValue);
-    console.log('passwords: ', passwordValue);
-
-    try {
-      const res = await fetch("/login", {
-        method: "POST",
-        body: JSON.stringify({
-          "email": emailValue,
-          "password": passwordValue  
-        }),
-        headers: {
-          "Content-Type": "application/json"
+    fetch("/login", request)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('resJSON: ', resJSON);
+        setUser(res.name)
+        setLoading(false)
+        if(res.status === 200) {
+          navigate('/home')
         }
-      });
-      const resJSON = await res.json();
-      console.log('resJSON: ', resJSON);
-    } catch (err) { alert(err) }
+      })
+      .catch((err) => {
+        alert(err);
+        navigate('/signup');
+      })
     
   }
 

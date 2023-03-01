@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 const findController = require('./Controller/findController');
 const likedController = require('./Controller/likedController');
 const profileController = require('./Controller/profileController');
+const authController = require('./Controller/authController');
 
 
 app.use(express.json());
@@ -21,10 +22,11 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(express.static('../dist'));
 app.use(express.static(path.join(__dirname, '../dist')));
 
+
 // login 
-app.post('/login', (req, res) => {
-  console.log(res.locals.users)
-  return res.status(200).json(res.locals.users)
+app.post('/login', authController.verifyUser, (req, res) => {
+  console.log(res.locals.message);
+  return res.status(200).json(res.locals.user);
 })
 
 
