@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 // find Restaurant middleware
 app.post('/find', findController.findNew, (req, res) => {
-  console.log(res.locals.findData)
+  // console.log(res.locals.findData)
   return res.status(200).json(res.locals.findData);
 });
 

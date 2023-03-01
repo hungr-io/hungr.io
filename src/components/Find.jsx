@@ -3,7 +3,7 @@ import heartIcon from '../assets/heart.png';
 import arrowIcon from '/src/assets/arrow.png';
 import xIcon from '/src/assets/xIcon.png';
 
-export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurants, rating, setRating, expense, setExpense}) => {
+export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurants, rating, setRating, expense, setExpense, likes, setLikes}) => {
   const [, updateState] = useState();
 
   useEffect(() => {
@@ -14,6 +14,14 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurant
   }, [user]);
 
   const forceUpdate = React.useCallback(() => updateState({}), []);
+
+  const addLike = (data) => {
+    console.log('adding like...')
+    let temp = likes
+    temp.push(data)
+    console.log(temp)
+    setLikes(temp)
+  }
 
   const resPrice = () => {
     let price = ''
@@ -75,6 +83,7 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurant
         <img src={xIcon} alt='X' />
       </div>
       <div className='res'
+      onClick={() => addLike(restaurants[i])}
       // style={{backgroundColor: '#72ed78'}}
       >
         <img src={heartIcon}></img>

@@ -8,7 +8,7 @@ import likesIcon from '/src/assets/heart.png';
 import bioIcon from '/src/assets/me.jpeg';
 import findIcon from '/src/assets/search.png';
 
-export const Navbar = ({setGreeting, user, btnColor, fetchData}) => {
+export const Navbar = ({setGreeting, user, btnColor, fetchData, img}) => {
   // const [ currentPage, setCurrentPage ] = useState('Find');
 
   const tabs = [{
@@ -25,7 +25,7 @@ export const Navbar = ({setGreeting, user, btnColor, fetchData}) => {
     onClick: fetchData
   },{
     route: "/home/bio",
-    icon: bioIcon,
+    icon: img,
     label: "Profile",
     style: {  
       width: '50px',

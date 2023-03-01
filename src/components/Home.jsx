@@ -5,11 +5,13 @@ import { Header } from './Header.jsx';
 import { Find } from './Find.jsx';
 import { Bio } from './Bio.jsx';
 import { Likes } from './Likes.jsx';
+import profileTemp from '/src/assets/profile.jpg'
 
 export const Home = ({selectedPage, user}) => {
   const [greeting, setGreeting] = useState(`Welcome,  ${user}`);
   const [btnColor, setBtnColor] = useState('none');
   const [zip, setZipcode] = useState('00000');
+  const [img, setImg] = useState(profileTemp);
   const [radius, setRadius] = useState(10);
   const [rating, setRating] = useState(1);
   const [cuisine, setCuisine] = useState('');
@@ -17,6 +19,7 @@ export const Home = ({selectedPage, user}) => {
   const [restaurants, setRestaurants] = useState([]);
   const [address, setAddress] = useState('2727 Agua Fria Fwy');
   const [userData, setUserData] = useState({name: user, zip: zip, img: 'img'});
+  const [likes, setLikes] = useState([]);
 
   // const [selectedPage, setSelectedPage] = useState('');
   // const [user, setUser] = useState('user');
@@ -138,13 +141,13 @@ export const Home = ({selectedPage, user}) => {
       <Header greeting={greeting} user={user} />
       <div>
         <Routes>
-          <Route path='/bio' element={ <Bio setBtnColor={setBtnColor} setGreeting={setGreeting} user={user} zip={zip}/> } />
-          <Route path='/likes' element={ <Likes setBtnColor={setBtnColor} setGreeting={setGreeting} user={user}/> } />
-          <Route path='/find' element={ <Find setBtnColor={setBtnColor} rating={rating} expense={expense} setExpense={setExpense} 
+          <Route path='/bio' element={ <Bio img={img} setImg={setImg} setBtnColor={setBtnColor} setGreeting={setGreeting} user={user} zip={zip}/> } />
+          <Route path='/likes' element={ <Likes setBtnColor={setBtnColor} likes={likes} setLikes={setLikes} setGreeting={setGreeting} user={user}/> } />
+          <Route path='/find' element={ <Find setBtnColor={setBtnColor} likes={likes} setLikes={setLikes} rating={rating} expense={expense} setExpense={setExpense} 
             setRestaurants={setRestaurants} setGreeting={setGreeting} setRating={setRating} user={user} restaurants={restaurants}/> } />
       </Routes>
     </div>
-    <Navbar fetchData={fetchData} setGreeting={setGreeting} selectedPage={selectedPage} btnColor={btnColor} />
+    <Navbar img={img} fetchData={fetchData} setGreeting={setGreeting} selectedPage={selectedPage} btnColor={btnColor} />
    </>
   );
 };

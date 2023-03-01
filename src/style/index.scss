@@ -82,7 +82,7 @@ background-color: lightgrey;
 }
 
 .likesName {
-  font-size: x-large;
+  font-size: large;
 }
 
 .likesDelBtn {
@@ -124,7 +124,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin: 2rem 0;
+  margin-top: 1rem;
   min-height: 15rem;
   min-width: 15rem;
 }
@@ -273,6 +273,15 @@ button:hover {
   border-radius: 50%;
 }
 
+// .inputDiv {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+ 
+// -------------------------------------------------------------
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
