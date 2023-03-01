@@ -44,11 +44,11 @@ authController.verifyUser = async (req, res, next) => {
       console.log('profile 2 is: ', profile.email)
 
       // REVIEW THIS SECTION
-      const userQuery = `SELECT * FROM users WHERE email = '${profile.email}' AND password = '${profile.sub}'`
+      const userQuery = `SELECT * FROM users WHERE email = '${profile.email}' AND password = '${profile.sub}';`
       const existsInDB = await db.query(userQuery)
       console.log('google existsInDB: ', existsInDB.rows[0]);
      
-      if(existsInDB.length < 1) next('You are not registered. Please sign up');
+      if(!existsInDB) return res.status(403).json('err')
 
       res.locals.user = {
         name: existsInDB.rows[0].name,
@@ -68,11 +68,11 @@ authController.verifyUser = async (req, res, next) => {
   // verification for non-google users
   else if (loginMethod === 'manual') {
     try {
-      const userQuery = `SELECT * FROM users WHERE email = '${data.email}' AND password = '${data.password}'`
+      const userQuery = `SELECT * FROM users WHERE email='${data.email}' AND password='${data.password}'`
       const existsInDB = await db.query(userQuery);
       console.log('reg user existsInDb: ', existsInDB.rows[0]);
 
-      if(existsInDB.rows[0] === undefined) return res.status(403).json('err') //{ err: 'XYou are not registered. Please sign up' }});
+      if(!existsInDB) return res.status(403).json('err') //{ err: 'XYou are not registered. Please sign up' }});
 
       res.locals.user = {
         name: existsInDB.rows[0].name,

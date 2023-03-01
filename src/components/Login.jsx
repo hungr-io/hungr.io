@@ -43,8 +43,8 @@ export const Login = (props) => {
         navigate('/home/find')
       })
       .catch((err) => {
-        alert('Invalid login/password');
-        navigate('/signup');
+        // alert('Invalid login/password');
+        // navigate('/signup');
       })
     
   }
