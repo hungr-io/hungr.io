@@ -8,7 +8,7 @@ import "../style/login.scss";
 import tlogo from '../assets/tlogo.png'
 
 export const Login = (props) => {
-  const { user, setUser, selectedPage, setSelectedPage } = props;
+  const { user, setUser, selectedPage, setSelectedPage, userData, setUserData } = props;
   const [ profile, setProfile ] = useState([]);
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState("");
@@ -39,7 +39,8 @@ export const Login = (props) => {
       .then((res) => res.json())
       .then((resJSON) => {
         console.log('resJSON: ', resJSON);
-        setUser(resJSON.name)
+        setUser(resJSON.name);
+        setUserData(resJSON);
         setLoading(false)
         if (resJSON === 'err') {
           alert('Invalid login/password.')
