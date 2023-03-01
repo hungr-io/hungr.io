@@ -75,6 +75,8 @@ background-color: lightgrey;
   margin: 2rem 2rem;
   background-color: rgb(255, 252, 241);
   box-shadow: 0px 5px 20px;
+  font-size: small;
+
 }
 
 .likesImg {
@@ -82,7 +84,7 @@ background-color: lightgrey;
 }
 
 .likesName {
-  font-size: large;
+  font-size: x-large;
 }
 
 .likesDelBtn {
@@ -266,11 +268,31 @@ button:hover {
   background-color: #F6EEE5;
 }
 
+.res:active {
+  // filter: grayscale(0);
+  background-color: #C3ED5B!important;
+}
+
 .bioImg {
   width: 256px;
   height: 256px;
   object-fit: cover;
   border-radius: 50%;
+}
+.zipBio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.userInfo {
+  // text-align: center;
+  border: none;
+  padding-left: 10%;
+  // width: 80%;
+  // height: 5vh;
+  background-color: #F6EEE5;
+  // margin-top: 20px;
 }
 
 // .inputDiv {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; 
 
 
-export const Bio = ({user, setGreeting, zip, img, setImg}) => {
+export const Bio = ({user, setUser, setGreeting, zip, setZipcode, img, setImg}) => {
   useEffect(() => {
     setGreeting(`Welcome, ${user}`)
   }, [user]);
@@ -32,6 +33,10 @@ export const Bio = ({user, setGreeting, zip, img, setImg}) => {
     })
   }, [editImg])
 
+  const assignZip = (e) => {
+    console.log(e)
+    setZipcode(e)
+  }
   
 console.log(img)
 
@@ -51,13 +56,22 @@ console.log(img)
         {/* <button onClick={editImg}>Upload Image</button> */}
       </div>
       <div className='zipBio'>
-        {zip}
+        Zip:
+        <input type="text" 
+        onChange = {(e) => {assignZip(e.target.value)}}
+        className='userInfo' accept='number' placeholder={zip}/>
+        {/* {zip} */}
       </div>
       <div className='userBio'>
-        {user}
+        Name: 
+        <input type="text" 
+        // onChange = {(e) => {setUser(e.target.value)}}
+        className='userInfo' placeholder={user}/>
+        {/* {user} */}
       </div>
-      <button>Edit</button>
-      <button>Log Out</button>
+      <button>Save</button>
+      <Link to='/'>Sign Out</Link>
+      {/* <button>Log Out</button> */}
 
     </div>
   )

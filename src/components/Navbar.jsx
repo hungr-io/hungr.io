@@ -5,7 +5,6 @@ import { Find } from './Find.jsx';
 import { Likes } from './Likes.jsx';
 import { Bio } from './Bio.jsx';
 import likesIcon from '/src/assets/heart.png';
-import bioIcon from '/src/assets/me.jpeg';
 import findIcon from '/src/assets/search.png';
 
 export const Navbar = ({setGreeting, user, btnColor, fetchData, img}) => {

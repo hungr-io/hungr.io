@@ -54,7 +54,7 @@ function App() {
             element={<Login setUser={setUser} user={user} selectedPage={selectedPage} />}
           />
           {/* route to navbar/header */}
-          <Route path="/home/*" element={<Home user={user} />} />
+          <Route path="/home/*" element={<Home setUser={setUser} user={user} />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
