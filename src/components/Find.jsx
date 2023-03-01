@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import heartIcon from '../assets/heart.png';
 import arrowIcon from '/src/assets/arrow.png';
 import xIcon from '/src/assets/xIcon.png';
+import { CostDropdown, RatingDropdown } from './Dropdown';
 
 export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurants, rating, setRating, expense, setExpense, likes, setLikes}) => {
   const [, updateState] = useState();
@@ -116,20 +117,22 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurant
   }
 // console.log(restaurants)
   return (
-    <div className='find'>
-      <div className='findSettings'>
-        <div className='searchInput'>Rating: 
-          <input className='input' type='number' id='quantity' min='1' max='5' placeholder={rating}
-          onChange = {(e) => {setRating(e.target.value)}}/>
-           / 5
+    <div className='findContainer'>
+      <div className='find'>
+        <div className='findSettings'>
+          <div className='searchInput'>Rating: 
+            <input className='input' type='number' id='quantity' min='1' max='5' placeholder={rating}
+            onChange = {(e) => {setRating(e.target.value)}}/>
+            / 5
+          </div>
+          {/* <div className='searchInput'>C</div> */}
+          <div className='searchInput'>Cost: 
+            <input className='input' type='text' id='expense' placeholder={expense}
+            onChange = {(e) => {setExpense(e.target.value)}}/>
+          </div>
         </div>
-        {/* <div className='searchInput'>C</div> */}
-        <div className='searchInput'>Cost: 
-          <input className='input' type='text' id='expense' placeholder={expense}
-          onChange = {(e) => {setExpense(e.target.value)}}/>
-        </div>
+        {getRes()}
       </div>
-      {getRes()}
     </div>
   );
 };

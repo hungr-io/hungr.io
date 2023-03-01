@@ -8,7 +8,7 @@ export const Login = () => {
 
   return (
     <div>loginnn
-      <Link to='/home'>temp</Link>
+      <Link to='/home/find'>temp</Link>
     </div>
   )
 }
