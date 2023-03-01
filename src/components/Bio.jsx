@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import profileTemp from '/src/assets/profile.jpg'
 
 
-export const Bio = ({user, setGreeting, zip, img, setImg}) => {
+export const Bio = ({user, setGreeting, zip, img, setImg, address, setAddress}) => {
   useEffect(() => {
     setGreeting(`Welcome, ${user}`)
   }, [user]);
