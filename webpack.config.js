@@ -12,7 +12,8 @@ module.exports = {
 
   plugins: [
     new HTMLWebpackPlugin({
-      template: './index.html' 
+      template: './index.html',
+      favicon: './favicon.ico'
     })
   ],
 
@@ -33,7 +34,7 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
     },
     {
-        test: /\.(jpg|jpeg|png|gif)$/i,
+        test: /\.(jpg|jpeg|png|gif|svg)$/i,
         use: ["file-loader"],
     },
     {
@@ -47,7 +48,7 @@ module.exports = {
       publicPath: '/dist',
       directory: path.resolve(__dirname, 'dist')
     },
-    port: 8080,
+    port: 8081,
     compress: true,
     proxy: {
       '/api': { 
@@ -57,6 +58,7 @@ module.exports = {
       }
     },
     hot: true,
+    open: true,
     historyApiFallback: true,
   },
   devtool: 'eval-source-map',
