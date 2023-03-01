@@ -1,0 +1,48 @@
+.login-page,
+.signup-page {
+  text-align: center;
+}
+
+iframe {
+  margin: auto !important;
+}
+
+#login-form {
+  padding: 20px;
+  text-align: center;
+}
+
+.form-control-login {
+  margin: 8px;
+
+  input {
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    width: 80%;
+  }
+}
+
+.form-button {
+  border: none;
+  width: 80%;
+  height: 5vh;
+  background-color: #c7baff;
+  margin-top: 20px;
+}
+.app_signup_google {
+  padding-bottom: 20px;
+}
+
+.login-logo {
+  width: 100px;
+  height: 100px;
+  background-image: url("../assets/tlogo.png");
+  background-position: center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+}
+
+.signup-link {
+  font-size: 12px;
+}

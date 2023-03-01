@@ -1,5 +1,8 @@
 const dotenv = require('dotenv');
 const express = require('express');
+const cors = require('cors');
+const { OAuth2Client } = require('google-auth-library');
+const jwt = require('jsonwebtoken');
 const path = require('path');
 dotenv.config();
 const app = express();
@@ -9,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 const findController = require('./Controller/findController');
 const likedController = require('./Controller/likedController');
 const profileController = require('./Controller/profileController');
+const authController = require('./Controller/authController');
 
 
 app.use(express.json());
@@ -17,6 +21,20 @@ app.use(express.urlencoded({ extended: true }));
 // serve bundle
 // app.use(express.static('../dist'));
 app.use(express.static(path.join(__dirname, '../dist')));
+
+
+// login 
+app.post('/login', authController.verifyUser, (req, res) => {
+  console.log(res.locals.message);
+  return res.status(200).json(res.locals.user);
+})
+
+
+// signin
+app.post('/signin', authController.userSignup, (req, res) => {
+  console.log(res.locals.message);
+  return res.status(200).json(res.locals.user);
+})
 
 
 // find Restaurant middleware
