@@ -101,6 +101,17 @@ button:hover {
   cursor: pointer;
 }
 
+.input {
+  width: 40px;
+  border: none;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
 .bio {
   display: flex;
   flex-direction: column;
@@ -151,7 +162,7 @@ button:hover {
   display: flex;
   flex-direction: row!important;
   justify-content: space-between;
-  gap: 5rem;
+  // gap: 8rem;
   margin: 1rem 0;
 
 }
@@ -162,7 +173,8 @@ button:hover {
   border-radius: 15px;
   box-shadow: 0px 2px 8px;
   border: 2px solid;
-  min-width: 6rem;
+  min-width: 8rem;
+  max-width: 8rem;
 
 }
 
@@ -223,6 +235,9 @@ button:hover {
 }
 
 .resultInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   padding: 10px 10px 10px 20px;
 }
 
@@ -250,6 +265,14 @@ button:hover {
   max-height: 80px;
   background-color: #F6EEE5;
 }
+
+.bioImg {
+  width: 256px;
+  height: 256px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

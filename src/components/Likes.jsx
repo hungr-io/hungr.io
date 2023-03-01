@@ -16,7 +16,7 @@ export const Likes = ({user, setGreeting}) => {
   const getLikes = () => {
     console.log('getting likes...')
     //fetch likes
-    fetch('api/getLikes')
+    fetch('/likes')
     .then(res => res.json())
     .then(data => {
       console.log(data)
@@ -46,9 +46,33 @@ export const Likes = ({user, setGreeting}) => {
     })
   }
 
+  const makeArr = () => {
+    if (likes[0]) return likes.map((el, i) => (
+      <div key={i} id={el._id} className='likesContainer'>
+        <div className='likesImg'>
+          <img src={el.img}></img>
+        </div>
+        <div>
+          <div className='likesName'>
+            {el.name}
+          </div>
+          <div>
+            {el.price}
+          </div>
+        </div>
+        <div >
+          <button className='likesDelBtn' onClick={() => deleteFav(el._id)}>Delete</button>
+        </div>
+      </div>
+    ))
+    else return [];
+  }
+  const likesArr = makeArr()
+
   return (
     <div className='likes'>
-      {likes.map((el, i) => (
+      {likesArr}
+      {/* {likes.map((el, i) => (
         <div key={i} id={el._id} className='likesContainer'>
           <div className='likesImg'>
             <img src={el.img}></img>
@@ -65,7 +89,7 @@ export const Likes = ({user, setGreeting}) => {
             <button className='likesDelBtn' onClick={() => deleteFav(el._id)}>Delete</button>
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   )
 }

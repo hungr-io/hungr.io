@@ -42,8 +42,8 @@ findController.findNew = (req, res, next) => {
           Authorization: 'Bearer PZE2q4mOvdMPr2LuGsUJ5InmxDea9UJl15KQI8AK7r4MoggvcbFl0qoOxpVBhDZjEteZKe8Jxpjjigp1qbcYpG3ghjdqY761jCRPZg1Rcfafu4QNuwm7whxkM0n9Y3Yx'
         }
       };
-      
-      fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&term=food&radius=${distance}&categories=japanese&price=${price}&sort_by=rating&limit=20`, options)
+    //   fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&term=food&radius=${distance}&categories=japanese&price=${price}&sort_by=rating&limit=20`, options)
+      fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&term=food&radius=${distance}&price=${price}&sort_by=rating&limit=20`, options)
         .then(data => data.json())
         .then(data => {
           data.businesses.forEach(restaurant => {
@@ -57,6 +57,7 @@ findController.findNew = (req, res, next) => {
                 url: restaurant.url,
                 image: restaurant.image_url,
                 rating: restaurant.rating,
+                phone: restaurant.display_phone,
             };
             const categoryArray = [];
             if (restaurant.category) {
