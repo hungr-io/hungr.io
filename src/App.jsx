@@ -25,6 +25,7 @@ function App() {
   const [selectedPage, setSelectedPage] = useState("");
   const [user, setUser] = useState("Rylan");
   const [favs, setFavs] = useState([]);
+  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
 
   const fetchUserInfo = async (email, password) => {
