@@ -1,6 +1,11 @@
-THIS FETCH RECEIVES THE DATA IN sampleData.md AS A RESPONSE
+<!-- THIS FETCH RECEIVES THE DATA IN sampleData.md AS A RESPONSE
 
-https://docs.developer.yelp.com/reference/v3_business_search
+https://docs.developer.yelp.com/reference/v3_business_search -->
+
+%20 is used in place of all spaces and non period punctuation
+the below is the location string for: 300 West Division St., 60610
+If just the zipcode, then the string is just: 60610
+'300%20West%20Division%20St.%2C%2060610' 
 
 const sdk = require('api')('@yelp-developers/v1.0#2vqu0dboldn2hxnb');
 

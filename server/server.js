@@ -4,7 +4,6 @@ const path = require('path');
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-// const PORT = 5173;
 
 const findController = require('./Controller/findController');
 const likedController = require('./Controller/likedController');
@@ -20,13 +19,14 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 
 // find Restaurant middleware
-app.get('/find', findController.findNew, (req, res) => {
+app.post('/find', findController.findNew, (req, res) => {
   console.log(res.locals.findData)
   return res.status(200).json(res.locals.findData);
 });
 
 // create new liked restaurant middleware
-app.put('/find', likedController.newLike, (req, res) => {
+app.post('/newLike', likedController.newLike, (req, res) => {
+  // this route works
   return res.status(200).json(res.locals.rest);
 });
 
@@ -35,9 +35,23 @@ app.get('/likes', likedController.getLikes, (req, res) => {
   return res.status(200).json(res.locals.likes);
 });
 
-// app.delete('/likes', likedController.deleteLike, (req, res, next) => {
+app.delete('/likes', likedController.deleteLike, (req, res) => {
+  // this route works
+  return res.status(200).json(res.locals.deleted)
+});
 
-// });
+app.patch('/profile', profileController.editUser, (req, res) => {
+  //this route works
+  return res.status(200).json();
+});
+
+app.get('/testing', likedController.selectAll, (req, res,) => {
+  return res.status(200).json();
+});
+
+app.get('/testingProfile', profileController.selectAll, (req, res,) => {
+  return res.status(200).json();
+})
 
 // 404 not found
 app.use((req, res) => res.status(404).send('404 page not found'));
