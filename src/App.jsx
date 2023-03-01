@@ -10,6 +10,7 @@ import { Find } from './components/Find.jsx';
 import { Login } from './components/Login.jsx';
 import { Bio } from './components/Bio.jsx';
 import { Likes } from './components/Likes.jsx';
+import { Signup } from './components/Signup.jsx';
 
 function App() {
   const [selectedPage, setSelectedPage] = useState('');
@@ -25,6 +26,7 @@ function App() {
         <Route path='/' element={ <Login user={user} selectedPage={selectedPage}/> } />
         {/* route to navbar/header */}
         <Route path='/home/*' element={ <Home user={user}/> } />
+        <Route path='/signup' element={ <Signup user={user} />} />
       </Routes>
     </div>
    </>

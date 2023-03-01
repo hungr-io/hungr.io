@@ -6,6 +6,7 @@ import { Find } from './Find.jsx';
 import { Bio } from './Bio.jsx';
 import { Likes } from './Likes.jsx';
 
+
 export const Home = ({selectedPage, user}) => {
   const [greeting, setGreeting] = useState(`Welcome,  ${user}`);
   const [btnColor, setBtnColor] = useState('none');
@@ -23,6 +24,7 @@ export const Home = ({selectedPage, user}) => {
           <Route path='/bio' element={ <Bio setBtnColor={setBtnColor} setGreeting={setGreeting} user={user} zipcode={zipcode}/> } />
           <Route path='/likes' element={ <Likes setBtnColor={setBtnColor} setGreeting={setGreeting} user={user}/> } />
           <Route path='/find' element={ <Find setBtnColor={setBtnColor} setGreeting={setGreeting} user={user}/> } />
+          
       </Routes>
     </div>
     <Navbar setGreeting={setGreeting} selectedPage={selectedPage} btnColor={btnColor} />
