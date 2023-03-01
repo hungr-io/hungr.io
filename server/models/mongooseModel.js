@@ -5,7 +5,7 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: 'Project 0'
+    dbName: 'hungrio'
 })
 .then(() => console.log('Connected to BongoDB'))
 .catch(err => console.log(err))

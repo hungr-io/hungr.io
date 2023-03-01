@@ -19,7 +19,7 @@ export const Find = ({user, setGreeting, setBtnColor}) => {
         <div className='response'>
           <div className='res'>X</div>
           <div className='res'>./</div>
-          <div className='res'>-></div>
+          <div className='res'>-</div>
         </div>
         
         <p className='resultInfo'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, perspiciatis tempore quisquam hic reiciendis nihil commodi nisi necessitatibus deserunt. Dolorem consequatur fugit.
