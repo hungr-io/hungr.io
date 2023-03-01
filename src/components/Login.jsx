@@ -13,29 +13,38 @@ export const Login = () => {
   
 
   const handleLogin = async (e, loginMethod, data) => {
+    let emailValue, passwordValue;
+    
+    // conditional fetching: manual login or google token
     if (loginMethod === 'manual') {
       e.preventDefault();
+      emailValue = data.email;
+      passwordValue = data.password
     };
 
-    console.log('this is my data: ', data);
-    const emailValue = data.email // document.getElementById("login-username").value;
-    const passwordValue = data.password // document.getElementById("login-password").value;
+    if (loginMethod === 'google') {
+      emailValue = data.email;
+      passwordValue = data.sub
+    }
+
     console.log('emails: ', emailValue);
     console.log('passwords: ', passwordValue);
 
-    // conditional fetching: manual login or google token
-    // const res = await fetch("/", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     "email": document.getElementById("login-username").value,
-    //     "password": document.getElementById("login-password").value  
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // })
-    // const data = await res.json()
-    // // store returned user somehow -----> BACKENDDDDD
+    try {
+      const res = await fetch("/login", {
+        method: "POST",
+        body: JSON.stringify({
+          "email": emailValue,
+          "password": passwordValue  
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      const resJSON = await res.json();
+      console.log('resJSON: ', resJSON);
+    } catch (err) { alert(err) }
+    
   }
 
 

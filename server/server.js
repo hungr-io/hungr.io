@@ -21,6 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(express.static('../dist'));
 app.use(express.static(path.join(__dirname, '../dist')));
 
+// login 
+app.post('/login', (req, res) => {
+  console.log(res.locals.users)
+  return res.status(200).json(res.locals.users)
+})
+
 
 // find Restaurant middleware
 app.get('/find', findController.findNew, (req, res) => {
