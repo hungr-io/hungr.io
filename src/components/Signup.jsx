@@ -8,50 +8,38 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const handleSignup = async (e, loginMethod, user) => {
-    if (loginMethod === "manual") {
+    setLoading(true);
+    console.log(loginMethod, data);
+    
+    // conditional fetching: manual login or google token
+    if (loginMethod === 'manual') {
       e.preventDefault();
-      createUser();
-      navigate("/home");
-    } else {
-      console.log("this is my data: ", user);
-      const isExist = verifyUser();
-      if (isExist) {
-        navigate("/home");
-      } else {
-        createUser();
-      }
-    }
+    };
 
-    const createUser = async () => {
-      try {
-        const res = await fetch("/api/signup", {
-          method: "POST",
-          body: JSON.stringify(user),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
+    const request = {
+      method: "POST",
+      body: JSON.stringify({
+        "data": data,
+        "loginMethod": loginMethod  
+      }),
+      headers: {
+        "Content-Type": "application/json"
       }
     };
-    const verifyUser = async () => {
-      try {
-        const res = await fetch("/api/login", {
-          method: "POST",
-          body: JSON.stringify(user),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    // ***need to do a check to block navigation to home if error is thrown
+    fetch("/api/signup", request)
+      .then((res) => res.json())
+      .then((resJSON) => {
+        console.log('resJSON: ', resJSON);
+        setUser(resJSON.name)
+        setLoading(false)
+        navigate('/home/find')
+      })
+      .catch((err) => {
+        alert(err);
+        // navigate('/signup');
+      })
+
   };
   return (
     <div className="signup-page">
@@ -100,18 +88,14 @@ export const Signup = () => {
         <GoogleLogin
           buttonText="Register with Google"
           onSuccess={async (credResponse) => {
-            var decoded = await jwt_decode(credResponse.credential);
-            handleSignup(null, "google", {
-              email: decoded.email,
-              password: decoded.password,
-            });
-          }}
+            handleLogin(null, 'google', credResponse.credential);}
+          }
           onFailure={() => console.log("login failed")}
           cookiePolicy="single_host_origin"
         />
       </div>
       <div className="signup-link">
-        Already have login and password? <Link to="/signup">Log in here</Link>
+        Already have login and password? <Link to="/">Log in here</Link>
       </div>
     </div>
   );

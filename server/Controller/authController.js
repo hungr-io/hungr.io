@@ -48,7 +48,7 @@ authController.verifyUser = async (req, res, next) => {
       const existsInDB = await db.query(userQuery)
       console.log('google existsInDB: ', existsInDB.rows[0]);
      
-      if(!existsInDB) next({ message: 'You are not registered. Please sign up'});
+      if(existsInDB.length < 1) next('You are not registered. Please sign up');
 
       res.locals.user = {
         name: existsInDB.rows[0].name,
@@ -72,7 +72,7 @@ authController.verifyUser = async (req, res, next) => {
       const existsInDB = await db.query(userQuery);
       console.log('reg user existsInDb: ', existsInDB.rows[0]);
 
-      if(!existsInDB) next({ message: 'You are not registered. Please sign up'});
+      if(existsInDB.rows[0] === undefined) return res.status(403).json('err') //{ err: 'XYou are not registered. Please sign up' }});
 
       res.locals.user = {
         name: existsInDB.rows[0].name,
@@ -86,7 +86,12 @@ authController.verifyUser = async (req, res, next) => {
       
       return next();
 
-    } catch (err) { next(err); }
+    } catch (err) { next({
+      log: `userController.verify: ERROR: ${err}`,
+      message: {
+        err: "You are not registered. Please sign up, check server logs for more details",
+      },
+    }); }
   }
 
 }

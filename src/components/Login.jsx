@@ -37,14 +37,14 @@ export const Login = (props) => {
     fetch("/api/login", request)
       .then((res) => res.json())
       .then((resJSON) => {
-        console.log('resJSON: ', resJSON);
+        console.log('resJSON: ', resJSON); //msg
         setUser(resJSON.name)
         setLoading(false)
         navigate('/home/find')
       })
       .catch((err) => {
-        console.log(err);
-        // navigate('/signup');
+        alert('Invalid login/password');
+        navigate('/signup');
       })
     
   }
@@ -92,7 +92,6 @@ export const Login = (props) => {
         <GoogleLogin
           buttonText="Login with Google"
           onSuccess={async (credResponse) => {
-            var decoded = await jwt_decode(credResponse.credential);
             handleLogin(null, 'google', credResponse.credential);}
           }
           onFailure={() => console.log('login failed')}
