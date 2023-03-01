@@ -1,5 +1,5 @@
 import React,  { useState, useEffect, Suspense } from 'react';
-import { BrowserRouter, Link, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, useNavigate, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Navbar } from './components/Navbar.jsx';
@@ -16,15 +16,16 @@ function App() {
   const [user, setUser] = useState('Rylan');
   const navigate = useNavigate();
 
+
   return (
 
    <>
     <div className='home'>
       <Routes>
         {/* route to login */}
-        <Route path='/' element={ <Login user={user} selectedPage={selectedPage}/> } />
+        <Route path='/' element={ <Login user={user} setUser={setUser} selectedPage={selectedPage}/> } />
         {/* route to navbar/header */}
-        <Route path='/home/*' element={ <Home user={user}/> } />
+        <Route path='/home/*' element={ <Home user={user}  /> } />
         <Route path='/signup' element={ <Signup user={user} />} />
       </Routes>
     </div>

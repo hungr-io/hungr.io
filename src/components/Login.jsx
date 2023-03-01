@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useHistory } from 'react';
 import { useNavigate, Link, useLocation  } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from '@react-oauth/google';
@@ -33,20 +33,18 @@ export const Login = (props) => {
         "Content-Type": "application/json"
       }
     };
-
-    fetch("/login", request)
+    // ***need to do a check to block navigation to home if error is thrown
+    fetch("/api/login", request)
       .then((res) => res.json())
-      .then((res) => {
+      .then((resJSON) => {
         console.log('resJSON: ', resJSON);
-        setUser(res.name)
+        setUser(resJSON.name)
         setLoading(false)
-        if(res.status === 200) {
-          navigate('/home')
-        }
+        navigate('/home')
       })
       .catch((err) => {
-        alert(err);
-        navigate('/signup');
+        console.log(err);
+        // navigate('/signup');
       })
     
   }
@@ -78,7 +76,7 @@ export const Login = (props) => {
           buttonText="Login with Google"
           onSuccess={async (credResponse) => {
             var decoded = await jwt_decode(credResponse.credential);
-            handleLogin(null, 'google', decoded);}
+            handleLogin(null, 'google', credResponse.credential);}
           }
           onFailure={() => console.log('login failed')}
           cookiePolicy="single_host_origin"          

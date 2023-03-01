@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 
 export const Signup = () => {
 
-  useEffect(() => {
-    if (window.google) {
-      google.accounts.id.initialize({
-        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-        callback: handleGoogle,
-      });
+  // useEffect(() => {
+  //   if (window.google) {
+  //     google.accounts.id.initialize({
+  //       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+  //       callback: handleGoogle,
+  //     });
 
-      google.accounts.id.renderButton(document.getElementById(''));
-    }
-  })
+  //     google.accounts.id.renderButton(document.getElementById(''));
+  //   }
+  // })
 
   return (
-    <div>
+    <div id='signup'>
        <form id="signup-form" className="form" >
             <h1>Sign Up</h1>
             <div className="form-control-signup">   

@@ -30,6 +30,13 @@ app.post('/login', authController.verifyUser, (req, res) => {
 })
 
 
+// signin
+app.post('/signin', authController.userSignup, (req, res) => {
+  console.log(res.locals.message);
+  return res.status(200).json(res.locals.user);
+})
+
+
 // find Restaurant middleware
 app.get('/find', findController.findNew, (req, res) => {
   console.log(res.locals.findData)

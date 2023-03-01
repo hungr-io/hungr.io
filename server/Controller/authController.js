@@ -1,5 +1,6 @@
 const { OAuth2Client } = require("google-auth-library");
 const { default: jwtDecode } = require("jwt-decode");
+const jwt = require("jsonwebtoken");
 const db = require('../models/models.js');
 
 
@@ -7,6 +8,7 @@ const GOOGLE_CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID;
 const GOOGLE_SECRET = process.env.GOOGLE_OAUTH_CLIENT_SECRET;
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
+// NEED TO ADD TOKEN CHECK
 
 const authController = {};
 
@@ -28,29 +30,32 @@ const verifyGoogleToken = async (token) => {
 // verifies user upon login
 authController.verifyUser = async (req, res, next) => {
   console.log('entered verifyUser middleware')
-  const { data, loginMethod } = req;
+  const { data, loginMethod } = req.body;
+  console.log('login method is: ', loginMethod)
   
   // verification for google accounts
   if (loginMethod === 'google') {
     try {
       const verificationResponse = await verifyGoogleToken(data);
-      if (verificationResponse.error) next( { message: verificationResponse.error })
+      if (verificationResponse.error) next( verificationResponse.error )
       
       const profile = verificationResponse?.payload;
-      console.log('profile: ', profile);
+      console.log('profile: ', verificationResponse.payload);
+      console.log('profile 2 is: ', profile.email)
 
       // REVIEW THIS SECTION
-      const userQuery = `SELECT * FROM users WHERE email = ${profile.email}`
-      const existsInDB = await db.query(userQuery).rows[0]
-      console.log('google existsInDB: ', existsInDB);
+      const userQuery = `SELECT * FROM users WHERE email = '${profile.email}' AND password = '${profile.sub}'`
+      const existsInDB = await db.query(userQuery)
+      console.log('google existsInDB: ', existsInDB.rows[0]);
      
       if(!existsInDB) next({ message: 'You are not registered. Please sign up'});
 
       res.locals.user = {
-        name: profile?.name,
-        picture: profile?.image,
-        email: profile?.email,
-        token: jwt.sign({ email: profile.email },GOOGLE_SECRET, { expiresIn: "1d" })
+        name: existsInDB.rows[0].name,
+        picture: existsInDB.rows[0].image,
+        email: existsInDB.rows[0].email,
+        token: jwt.sign({ email: existsInDB.rows[0].email },GOOGLE_SECRET, { expiresIn: "1d" }),
+        zip: existsInDB.rows[0].zip
       };
 
       res.locals.message = 'Login was successful';
@@ -63,17 +68,18 @@ authController.verifyUser = async (req, res, next) => {
   // verification for non-google users
   else if (loginMethod === 'manual') {
     try {
-      const userQuery = `SELECT * FROM users WHERE email = ${data.email} AND password = ${data.password}`
-      const existsInDB = await db.query(userQuery).rows[0];
-      console.log('reg user existsInDb: ', existsInDB);
+      const userQuery = `SELECT * FROM users WHERE email = '${data.email}' AND password = '${data.password}'`
+      const existsInDB = await db.query(userQuery);
+      console.log('reg user existsInDb: ', existsInDB.rows[0]);
 
       if(!existsInDB) next({ message: 'You are not registered. Please sign up'});
 
       res.locals.user = {
-        name: existsInDB.name,
-        picture: existsInDB.image,
-        email: existsInDB.email,
-        token: jwt.sign({ email: existsInDB.email },GOOGLE_SECRET, { expiresIn: "1d" })
+        name: existsInDB.rows[0].name,
+        picture: existsInDB.rows[0].image,
+        email: existsInDB.rows[0].email,
+        token: jwt.sign({ email: existsInDB.rows[0].email },GOOGLE_SECRET, { expiresIn: "1d" }),
+        zip: existsInDB.rows[0].zip
       };
 
       res.locals.message = 'Login was successful';
@@ -88,6 +94,57 @@ authController.verifyUser = async (req, res, next) => {
 
 // user signup
 authController.userSignup = async (req, res, next) => {
+  console.log('entered userSignup middleware')
+  const { data, loginMethod } = req.body;
+  
+  // verification for google accounts
+  if (loginMethod === 'google') {
+    try {
+      const verificationResponse = await verifyGoogleToken(data);
+      if (verificationResponse.error) next( { message: verificationResponse.error })
+      
+      const profile = verificationResponse?.payload;
+      console.log('profile: ', profile);
+
+      // REVIEW THIS SECTION
+      const userQuery = `INSERT INTO users (email, password) VALUES (${profile.email}, ${profile.sub})`;
+      const addToDB = await db.query(userQuery)
+      console.log('google existsInDB: ', addToDB.rows[0]);
+
+      res.locals.user = {
+        name: addToDB.rows[0]?.name,
+        picture: addToDB.rows[0]?.image,
+        email: addToDB.rows[0]?.email,
+        token: jwt.sign({ email: addToDB.rows[0].email },"mySecret", { expiresIn: "1d" })
+      };
+
+      res.locals.message = 'Login was successful';
+
+      return next();    
+
+    } catch (err) { next(err); }
+  }
+  
+  // verification for non-google users
+  else if (loginMethod === 'manual') {
+    try {
+      const userQuery = `INSERT INTO users (email, password) VALUES (${data.email}, ${data.password})`;
+      const addToDB = await db.query(userQuery)
+      console.log('manual addToDB: ', addToDB.rows[0]);
+
+      res.locals.user = {
+        name: addToDB.rows[0]?.name,
+        picture: addToDB.rows[0]?.image,
+        email: addToDB.rows[0]?.email,
+        token: jwt.sign({ email: addToDB.rows[0].email },"mySecret", { expiresIn: "1d" })
+      };
+
+      res.locals.message = 'Signup was successful';
+
+      return next();    
+
+    } catch (err) { next({ message: 'An error occurred. Registration failed.'}); }
+  }
 
 }
 
