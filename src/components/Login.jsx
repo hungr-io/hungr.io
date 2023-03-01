@@ -40,7 +40,7 @@ export const Login = (props) => {
         console.log('resJSON: ', resJSON);
         setUser(resJSON.name)
         setLoading(false)
-        navigate('/home')
+        navigate('/home/find')
       })
       .catch((err) => {
         console.log(err);
