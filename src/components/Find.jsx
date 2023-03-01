@@ -11,7 +11,6 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants}) => {
   }, [user]);
 
 
-
   return (
     <div className='find'>
       <div className='findSettings'>
