@@ -30,6 +30,7 @@
     "nodemon": "^2.0.20",
     "postgres": "^3.3.3",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
     "react-test-renderer": "^18.2.0",

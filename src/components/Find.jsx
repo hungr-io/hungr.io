@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import heartIcon from '../assets/heart.png';
 import arrowIcon from '/src/assets/arrow.png';
 import xIcon from '/src/assets/xIcon.png';
@@ -115,21 +117,62 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurant
   </div>
   )
   }
+  const getExpenseValue = (e) => {
+    console.log('expense: ', e)
+    setExpense(e)
+  }
+  const getRatingValue = (e) => {
+    console.log('rating: ', e)
+    setRating(e)
+  }
+
 // console.log(restaurants)
   return (
     <div className='findContainer'>
       <div className='find'>
         <div className='findSettings'>
-          <div className='searchInput'>Rating: 
+        <DropdownButton 
+            value={expense}
+            // variant='primary'
+            // id='dropdown-variants-Secondary'
+            onSelect = {(e) => {getRatingValue(e)}}
+            id="dropdown-basic-button" 
+            title={`Rating: ${rating}/5`}>
+    
+            <Dropdown.Item eventKey='1' >1</Dropdown.Item>
+            <Dropdown.Item eventKey='2' >2</Dropdown.Item>
+            <Dropdown.Item eventKey='3' >3</Dropdown.Item>
+            <Dropdown.Item eventKey='4' >4</Dropdown.Item>
+            <Dropdown.Item eventKey='5' >5</Dropdown.Item>
+          </DropdownButton>
+          {/* <div className='searchInput'>Rating: 
             <input className='input' type='number' id='quantity' min='1' max='5' placeholder={rating}
             onChange = {(e) => {setRating(e.target.value)}}/>
             / 5
-          </div>
+          </div> */}
           {/* <div className='searchInput'>C</div> */}
-          <div className='searchInput'>Cost: 
-            <input className='input' type='text' id='expense' placeholder={expense}
-            onChange = {(e) => {setExpense(e.target.value)}}/>
-          </div>
+          {/* <CostDropdown
+            expense={expense}
+            value={expense}
+            onChange = {(e) => {getExpenseValue(e.target.value)}}
+            // className='searchInput' 
+            // onChange = {(e) => {setExpense(e.target.value)}}
+            // id="dropdown-basic-button" 
+            // title="Cost"
+          /> */}
+          <DropdownButton 
+            value={expense}
+            onSelect = {(e) => {getExpenseValue(e)}}
+            id="dropdown-basic-button" title={`Cost: ${expense}`}>
+
+            <Dropdown.Item eventKey='$' value='$'>$</Dropdown.Item>
+            <Dropdown.Item eventKey='$$' value='$$'>$$</Dropdown.Item>
+            <Dropdown.Item eventKey='$$$' value='$$$'>$$$</Dropdown.Item>
+            <Dropdown.Item eventKey='$$$$' value='$$$$'>$$$$</Dropdown.Item>
+          </DropdownButton>
+
+            {/* <input className='input' type='text' id='expense' placeholder={expense} */}
+            {/* onChange = {(e) => {setExpense(e.target.value)}}/> */}
         </div>
         {getRes()}
       </div>
