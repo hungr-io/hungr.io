@@ -111,7 +111,7 @@ export const Signup = () => {
         />
       </div>
       <div className="signup-link">
-        Already have login and password? <Link to="/signup">Log in here</Link>
+        Already have login and password? <Link to="/">Log in here</Link>
       </div>
     </div>
   );

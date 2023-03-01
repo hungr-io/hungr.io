@@ -40,11 +40,17 @@ export const Login = (props) => {
         console.log('resJSON: ', resJSON);
         setUser(resJSON.name)
         setLoading(false)
-        navigate('/home/find')
-      })
+        if (resJSON === 'err') {
+          alert('Invalid login/password.')
+          navigate('/signup');
+        }
+        else {
+          navigate('/home/find')
+        }
+        })
       .catch((err) => {
-        console.log(err);
-        // navigate('/signup');
+        alert('Invalid login/password.')
+        navigate('/signup');
       })
     
   }
