@@ -2,7 +2,6 @@ import React,  { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter, Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import './style/App.css';
 import { Navbar } from './components/Navbar.jsx';
 import { Header } from './components/Header.jsx';
 import { Home } from './components/Home.jsx';

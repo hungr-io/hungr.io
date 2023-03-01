@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Montserrat:wght@700&display=swap');
+
 * {
   box-sizing: border-box;
 }
-
+html,
+body,
+#root,
 body {
-
+  font-family: "DM Sans", sans-serif;
+  color: #303d40;
+  font-weight: bold;
+  background-color: #F6EEE5;
 }
 
 .header {
@@ -17,7 +24,7 @@ body {
   border: none;
   font-size: x-large;
   box-shadow: 0px 5px 20px;
-  background-color: rgb(255, 252, 241);
+  background-color: #C7BAFF;
   /* width: 100%; */
 }
 
@@ -33,6 +40,7 @@ body {
   margin-bottom: 0;
   position: sticky; 
   bottom: 0;
+  background-color: #C7BAFF;
   // background-color: rgb(255, 252, 241);
   /* padding: 0px 10px; */
 }
@@ -43,16 +51,16 @@ body {
   align-items: center;
   color: black;
   font-size: x-large;
-  border-radius: 40px;
-  min-height: 80px;
-  min-width: 80px;
-  max-width: 80px;
-  max-height: 80px;
+  border-radius: 50px;
+  min-height: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  max-height: 100px;
   // background-color: red;
 }
 
 .navText:hover {
-background-color: grey;
+background-color: lightgrey;
 }
 
 .likesContainer {
@@ -151,7 +159,7 @@ button:hover {
 .searchInput {display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 0px 2px 8px;
   border: 2px solid;
   min-width: 6rem;
@@ -167,21 +175,55 @@ button:hover {
 .findResult {
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 0px 2px 8px;
   max-width: 95%;
+  background-color: #C3ED5B;
+}
+
+.resName {
+  margin-bottom: 0.5rem;
+  font-size: larger;
+}
+
+.resImage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center!important;
+  align-items: flex-start;
+  gap: 1rem;
+  // padding: 0 1rem;
+  border: 2px solid;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  // background-color: red;
+}
+
+.resBio {
+  display: flex;
+  flex-direction: row;
+  font-size: larger;
+  // padding: 0 2rem;
+  gap: 1rem 1rem;
 }
 
 .resultArea {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 0px 2px 8px;
   max-width: 98%;
   min-height: 20rem;
   // min-width: 99%;
-  margin: 1rem 1rem;
+  margin: 0 1rem;
+  background-color: #F6EEE5;
+  padding: 0 1.5rem;
+}
+
+.resultInfo {
+  padding: 10px 10px 10px 20px;
 }
 
 .response {
@@ -192,9 +234,11 @@ button:hover {
   gap: 1rem;
   border-radius: 20px;
   padding: 0 4rem;
+  margin: 1rem 0;
 }
 
 .res {
+  font-size: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,6 +248,7 @@ button:hover {
   min-width: 80px;
   max-width: 80px;
   max-height: 80px;
+  background-color: #F6EEE5;
 }
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

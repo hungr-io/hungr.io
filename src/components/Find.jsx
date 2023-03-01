@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import heartIcon from '/src/assets/heart.svg';
+import arrowIcon from '/src/assets/arrow.svg';
+import xIcon from '/src/assets/xIcon.svg';
 
-export const Find = ({user, setGreeting, setBtnColor}) => {
+export const Find = ({user, setGreeting, setBtnColor, restaurants}) => {
 
   useEffect(() => {
     setGreeting(`Welcome, ${user}`)
     setBtnColor('grey');
   }, [user]);
+
 
   return (
     <div className='find'>
@@ -15,15 +19,58 @@ export const Find = ({user, setGreeting, setBtnColor}) => {
         <div className='searchInput'>$</div>
       </div>
       <div className='findResult'>
-        <div className='resultArea'>You can't out pizza the hut</div>
+        <div className='resultArea'>
+
+          <div className='resName'>
+            {restaurants[0]?.name}
+          </div>
+
+          <div className='resImage'>
+            <img src={restaurants[0]?.image_url} 
+            width='135'
+            alt="404" />
+          </div>
+
+          <div className='resBio'>
+            <div>
+              {restaurants[0]?.price}
+            </div>
+            <div>
+            {Math.floor(restaurants[0]?.distance )} meters
+            </div>
+            
+          </div>
+
+        </div>
         <div className='response'>
-          <div className='res'>X</div>
-          <div className='res'>./</div>
-          <div className='res'>-></div>
+          <div className='res'
+          style={{backgroundColor: '#f26f6f'}}
+          >
+            <img src={xIcon} alt='X' />
+          </div>
+          <div className='res'
+          // style={{backgroundColor: '#72ed78'}}
+          >
+            <img src={heartIcon}></img>
+          </div>
+          <div className='res'
+          // href={restaurants[0]?.url}
+          style={{backgroundColor: '#6f7cf2'}}
+          >
+            <img src={arrowIcon}></img>
+          </div>
         </div>
         
-        <p className='resultInfo'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, perspiciatis tempore quisquam hic reiciendis nihil commodi nisi necessitatibus deserunt. Dolorem consequatur fugit.
+        <p className='resultInfo'>
+          {restaurants[0]?.display_phone} <br />
         </p>
+        <div>
+          {restaurants[0]?.categories.map((el, i) => {
+            <div>
+              
+            </div>
+          })}
+        </div>
         </div>
     </div>
   );

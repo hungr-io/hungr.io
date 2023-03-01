@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import logo from '/src/assets/logo.png';
 
 export const Header = ({greeting}) => {
   
@@ -9,7 +10,11 @@ export const Header = ({greeting}) => {
           {greeting}
         </div>
         <div className='logo'>
-          LOGO
+          <img src={logo} alt="LOGO" 
+          width='70'
+          height='70'
+
+          />
         </div>
       </div>
     </>

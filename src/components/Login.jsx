@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, Link, useLocation,  Link  } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
+import { Home } from './Home.jsx'
 
 
 export const Login = () => {
@@ -72,25 +73,14 @@ export const Login = () => {
           cookiePolicy="single_host_origin"          
         />
       </div>
+    <div>loginnn
+      <Link to='/home'>temp</Link>
     </div>
+  </div>
   )
 }
 
-"962ceb5f2f0f5ef59a6c5b27618f73317c468603"
 
 
 
-// render={(renderProps) => (
-//   <button 
-//     type="button" 
-//     className="google_login_button" 
-//     onClick={renderProps.onClick} 
-//     disabled={renderProps.disabled}
-//   >
-//     <FcGoogle className="" />
-//     Sign in with Google
-// </button>
-// )}
-// onSuccess={handleLogin}
-// onFailure={handleLogin}
-// cookiePolicy="single_host_origin"
+
