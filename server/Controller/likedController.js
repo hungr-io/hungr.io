@@ -54,6 +54,9 @@ likedController.newLike = (req, res, next) => {
       return next(newErr);
     });
 
+    likedController.deleteLike = (req, res, next) => {
+        console.log('test')
+    };
 };
 
 module.exports = likedController;

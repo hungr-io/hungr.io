@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
+import reactIcon from '/src/assets/react.svg'
 
 export const Likes = ({user, setGreeting}) => {
   
-  const [likes, setLikes] = useState([{name: 'McDonalds', price: '$', img: '/src/assets/react.svg'}, 
-  {name: 'Pizza Hut', price: '$$', img: '/src/assets/react.svg'},
-  {name: 'Sushi Sen', price: '$$$$', img: '/src/assets/react.svg'},
+  const [likes, setLikes] = useState([{name: 'McDonalds', price: '$', img: reactIcon}, 
+  {name: 'Pizza Hut', price: '$$', img: reactIcon},
+  {name: 'Sushi Sen', price: '$$$$', img: reactIcon},
 ]);
 
   console.log(likes) 

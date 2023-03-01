@@ -1,6 +1,6 @@
 const findController = {};
-const sdk = require('api')('@yelp-developers/v1.0#2vqu0dboldn2hxnb');
-sdk.auth('Bearer PZE2q4mOvdMPr2LuGsUJ5InmxDea9UJl15KQI8AK7r4MoggvcbFl0qoOxpVBhDZjEteZKe8Jxpjjigp1qbcYpG3ghjdqY761jCRPZg1Rcfafu4QNuwm7whxkM0n9Y3Yx');
+// const sdk = require('api')('@yelp-developers/v1.0#2vqu0dboldn2hxnb');
+// sdk.auth('Bearer PZE2q4mOvdMPr2LuGsUJ5InmxDea9UJl15KQI8AK7r4MoggvcbFl0qoOxpVBhDZjEteZKe8Jxpjjigp1qbcYpG3ghjdqY761jCRPZg1Rcfafu4QNuwm7whxkM0n9Y3Yx');
 
 findController.findNew = (req, res, next) => {
     res.locals.findData = [];
@@ -33,17 +33,18 @@ findController.findNew = (req, res, next) => {
     };
 
     // convert distance from miles to meters
-    const distance = (req.body.distance * 1609.344).toString();
-
-    sdk.v3_business_search({
-        location: location,
-        term: 'food',
-        radius: distance,
-        price: price,
-        // categories: '',
-        sort_by: 'rating',
-        limit: '20'
-    })
+    let distance = (req.body.distance * 1609)
+    
+    const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer PZE2q4mOvdMPr2LuGsUJ5InmxDea9UJl15KQI8AK7r4MoggvcbFl0qoOxpVBhDZjEteZKe8Jxpjjigp1qbcYpG3ghjdqY761jCRPZg1Rcfafu4QNuwm7whxkM0n9Y3Yx'
+        }
+      };
+      
+      fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&term=food&radius=${distance}&categories=japanese&price=${price}&sort_by=rating&limit=20`, options)
+        .then(data => data.json())
         .then(data => {
           data.businesses.forEach(restaurant => {
             const newRest = {
@@ -58,15 +59,16 @@ findController.findNew = (req, res, next) => {
                 rating: restaurant.rating,
             };
             const categoryArray = [];
-            restaurant.category.forEach(elem => {
-                const categoryObj = {
-                    alias: elem.alias,
-                    title: elem.title
-                };
-                categoryArray.push(categoryObj)
-            });
+            if (restaurant.category) {
+                restaurant.category.forEach(elem => {
+                    const categoryObj = {
+                        alias: elem.alias,
+                        title: elem.title
+                    };
+                    categoryArray.push(categoryObj)
+                });
+            }
             newRest.category = categoryArray;
-            console.log('NEW RESTAURANT OBJECT IN FINDNEW: ', newRest);
             res.locals.findData.push(newRest);
           })
           return next();
@@ -80,4 +82,4 @@ findController.findNew = (req, res, next) => {
         })
 }
 
-export default findController;
+module.exports = findController;

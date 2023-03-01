@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import profileTemp from '/src/assets/profile.jpg'
 
 export const Bio = ({user, setGreeting, zipcode}) => {
   useEffect(() => {
@@ -13,7 +14,7 @@ export const Bio = ({user, setGreeting, zipcode}) => {
   return (
     <div className='bio'>
       <div className='image'>
-        <img src='/src/assets/profile.jpg'></img>
+        <img src={profileTemp}></img>
       </div>
       <a onClick={editProfile} style={{margin: '-40px 0 20px 0'}} >Change Image</a>
       <div className='zipBio'>

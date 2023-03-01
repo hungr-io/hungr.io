@@ -1,43 +1,42 @@
-import dotenv from'dotenv';
-// const dotenv = require('dotenv');
-// const express = require('express');
-// const path = require('path');
+const dotenv = require('dotenv');
+const express = require('express');
+const path = require('path');
 dotenv.config();
-import express from 'express';
-import path from 'path';
 const app = express();
 const PORT = process.env.PORT || 3000;
 // const PORT = 5173;
 
-// const findController = require('./Controller/findController');
-// const likedController = require('./Controller/likedController');
-import findController from './Controller/findController';
-// import likedController from './Controller/likedController';
-// import profileController from './Controller/profileController';
+const findController = require('./Controller/findController');
+const likedController = require('./Controller/likedController');
+const profileController = require('./Controller/profileController');
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // serve bundle
-app.use(express.static('../dist'));
-// app.use(express.static(path.join(__dirname, '../dist')));
+// app.use(express.static('../dist'));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 
 // find Restaurant middleware
-app.get('/api/find', findController.findNew, (req, res) => {
-  console.log('TEST')
+app.get('/find', findController.findNew, (req, res) => {
+  console.log(res.locals.findData)
   return res.status(200).json(res.locals.findData);
 });
 
 // create new liked restaurant middleware
-// app.put('/find', likedController.newLike, (req, res) => {
-//   return res.status(200).json(res.locals.rest);
-// });
+app.put('/find', likedController.newLike, (req, res) => {
+  return res.status(200).json(res.locals.rest);
+});
 
 // get users liked restaurant middleware
-// app.get('/likes', likedController.getLikes, (req, res) => {
-//   return res.status(200).json(res.locals.likes);
+app.get('/likes', likedController.getLikes, (req, res) => {
+  return res.status(200).json(res.locals.likes);
+});
+
+// app.delete('/likes', likedController.deleteLike, (req, res, next) => {
+
 // });
 
 // 404 not found
@@ -57,7 +56,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => console.log(`app is listening on port ${PORT}`));
-export default app;
+module.exports = app;
 
 // what middleware is needed?
 // create a user => store their username/email and corresponding password
