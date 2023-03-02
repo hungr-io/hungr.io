@@ -51,11 +51,29 @@ function App() {
           {/* route to login */}
           <Route
             path="/"
-            element={<Login setUser={setUser} user={user} selectedPage={selectedPage} />}
+            element={
+              <Login
+                setUser={setUser}
+                user={user}
+                selectedPage={selectedPage}
+              />
+            }
           />
           {/* route to navbar/header */}
+          {/* <Route path="/home/*" element={<Home setUser={setUser} user={user} />} />
+          <Route path="/signup" element={<Signup />} /> */}
+          {/* /////// */}
           <Route path="/home/*" element={<Home setUser={setUser} user={user} />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/signup"
+            element={
+              <Signup
+                setUser={setUser}
+                user={user}
+                selectedPage={selectedPage}
+              />
+            }
+          />
         </Routes>
       </div>
     </>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 
 
-export const Bio = ({user, setUser, setGreeting, zip, setZipcode, img, setImg}) => {
+export const Bio = ({user, setUser, setGreeting, zip, setZipcode, img, setImg, address, setAddress}) => {
   useEffect(() => {
     setGreeting(`Welcome, ${user}`)
   }, [user]);

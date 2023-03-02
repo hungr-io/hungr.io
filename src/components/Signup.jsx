@@ -4,55 +4,43 @@ import "../style/login.scss";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 
-export const Signup = () => {
+export const Signup = (props) => {
+  const { user, setUser, selectedPage, setSelectedPage } = props;
   const navigate = useNavigate();
 
-  const handleSignup = async (e, loginMethod, user) => {
+  const handleSignup = async (e, loginMethod, data) => {
+    // setLoading(true);
+    console.log(loginMethod, data);
+
+    // conditional fetching: manual login or google token
     if (loginMethod === "manual") {
       e.preventDefault();
-      createUser();
-      navigate("/home");
-    } else {
-      console.log("this is my data: ", user);
-      const isExist = verifyUser();
-      if (isExist) {
-        navigate("/home");
-      } else {
-        createUser();
-      }
     }
 
-    const createUser = async () => {
-      try {
-        const res = await fetch("/api/signup", {
-          method: "POST",
-          body: JSON.stringify(user),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
+    const request = {
+      method: "POST",
+      body: JSON.stringify({
+        data: data,
+        loginMethod: loginMethod,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     };
-    const verifyUser = async () => {
-      try {
-        const res = await fetch("/api/login", {
-          method: "POST",
-          body: JSON.stringify(user),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    // ***need to do a check to block navigation to home if error is thrown
+    fetch("/api/signup", request)
+      .then((res) => res.json())
+      .then((resJSON) => {
+        console.log("resJSON: ", resJSON);
+        setUser(resJSON.name);
+        // setLoading(false);
+        navigate("/home/find");
+      })
+      .catch((err) => {
+        console.log("Registration failed.", err);
+      });
   };
+
   return (
     <div className="signup-page">
       <form
@@ -60,8 +48,9 @@ export const Signup = () => {
         className="form"
         onSubmit={(e) =>
           handleSignup(e, "manual", {
-            email: document.getElementById("login-username").value,
-            password: document.getElementById("login-password").value,
+            username: document.getElementById("signup-username").value,
+            email: document.getElementById("signup-email").value,
+            password: document.getElementById("signup-password").value,
           })
         }
       >
@@ -77,7 +66,7 @@ export const Signup = () => {
         <div className="form-control-login">
           <input
             type="text"
-            id="signup-username"
+            id="signup-email"
             className="form-input-signup"
             placeholder="Email"
           />
@@ -101,10 +90,7 @@ export const Signup = () => {
           buttonText="Register with Google"
           onSuccess={async (credResponse) => {
             var decoded = await jwt_decode(credResponse.credential);
-            handleSignup(null, "google", {
-              email: decoded.email,
-              password: decoded.password,
-            });
+            handleSignup(null, "google", credResponse.credential);
           }}
           onFailure={() => console.log("login failed")}
           cookiePolicy="single_host_origin"
