@@ -4,25 +4,33 @@ import { Link, NavLink } from 'react-router-dom';
 import { Find } from './Find.jsx';
 import { Likes } from './Likes.jsx';
 import { Bio } from './Bio.jsx';
-let likesIcon, bioIcon, findIcon = '';
+import likesIcon from '/src/assets/heart.png';
+import findIcon from '/src/assets/search.png';
 
-export const Navbar = ({setGreeting, user, btnColor, fetchData}) => {
+export const Navbar = ({setGreeting, user, btnColor, fetchData, img}) => {
   // const [ currentPage, setCurrentPage ] = useState('Find');
 
   const tabs = [{
     route: "/home/likes",
     icon: likesIcon,
     label: "Likes",
+    style: {},
     onClick: () => 'clicked'
   },{
     route: "/home/find",
     icon: findIcon,
     label: "Find",
+    style: {},
     onClick: fetchData
   },{
     route: "/home/bio",
-    icon: bioIcon,
+    icon: img,
     label: "Profile",
+    style: {  
+      width: '50px',
+      height: '50px',
+      objectFit: 'cover',
+      borderRadius: '50%'},
     onClick: () => 'clicked'
   }]
 
@@ -41,7 +49,9 @@ export const Navbar = ({setGreeting, user, btnColor, fetchData}) => {
                       {/* <FontAwesomeIcon size="lg" icon={tab.icon}/> */}
                       <div className='navText' 
                       onClick={tab?.onClick}
-                      style={{backgroundColor: {btnColor}}}>{tab.label}</div>
+                      style={{backgroundColor: {btnColor}}}>
+                        <img style={tab.style} src={tab.icon} alt="" />
+                        </div>
                     </div>
                   </NavLink>
                 </NavItem>

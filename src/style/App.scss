@@ -1,3 +1,8 @@
+#nav {
+  gap: 0!important;
+  padding: 0 1rem!important;
+}
+
 /* 2532x1170 pixels at 460ppi */
 /* 11/12/13/pro */
 @media only screen 
@@ -44,12 +49,24 @@
       }
 
       .likesName {
-        font-size: 18px!important;
+        font-size: 14px!important;
         justify-content: flex-start;
       }
 
       .bio {
         gap: 1.5rem 0;
+      }
+
+      .inputDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 389px;
+        // margin: auto;
+      }
+      .file {
+        margin-left: 9rem;
       }
 
     }
@@ -60,23 +77,319 @@
 @media only screen 
 and (device-width: 428px) 
 and (device-height: 926px) 
-and (-webkit-device-pixel-ratio: 3) { }
+and (-webkit-device-pixel-ratio: 3) {
+  #nav {
+    gap: 0!important;
+    padding: 0 1rem!important;
+  }
+
+  .find {
+    max-height: 600!important;
+    max-width: 100%!important;
+  }
+
+  .findSettings {
+    gap: 0 1.5rem;
+    margin: 20px 0 30px 0;
+  }
+
+  .resultArea {
+    margin-top: 20px;
+    min-height: 275px!important;
+  }
+  
+  .response {
+    gap: 0 1rem;
+    padding: 0 2rem;
+  }
+
+  .likesContainer {
+   min-height: 85px;
+   max-height: 85px;
+  }
+
+  .likesDelBtn {
+    min-height: 85px;
+    max-height: 85px;
+  }
+
+  .likesImg {
+    margin: 0 1rem;
+  }
+
+  .likesName {
+    font-size: 18px!important;
+    justify-content: flex-start;
+  }
+
+  .bio {
+    gap: 1.5rem 0;
+  }
+
+  .inputDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 389px;
+    // margin: auto;
+  }
+  .file {
+    margin-left: 9rem;
+  }
+}
 
 /* 1792x828px at 326ppi */
 /* 11 */
 @media only screen 
     and (device-width: 414px) 
     and (device-height: 896px) 
-    and (-webkit-device-pixel-ratio: 2) { }
+    and (-webkit-device-pixel-ratio: 2) {
+      #nav {
+        gap: 0!important;
+        padding: 0 1rem!important;
+      }
+
+      .find {
+        max-height: 600!important;
+        max-width: 100%!important;
+      }
+
+      .findSettings {
+        gap: 0 1.5rem;
+        margin: 20px 0 30px 0;
+      }
+
+      .resultArea {
+        margin-top: 1rem;
+        min-height: 275px!important;
+      }
+      
+      .response {
+        gap: 0 1rem;
+        padding: 0 2rem;
+      }
+
+      .likesContainer {
+       min-height: 85px;
+       max-height: 85px;
+      }
+
+      .likesDelBtn {
+        min-height: 85px;
+        max-height: 85px;
+      }
+
+      .likesImg {
+        margin: 0 1rem;
+      }
+
+      .likesName {
+        font-size: 18px!important;
+        justify-content: flex-start;
+      }
+
+      .bio {
+        gap: 1.5rem 0;
+      }
+
+      .inputDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 389px;
+        // margin: auto;
+      }
+      .file {
+        margin-left: 9rem;
+      }
+    }
 
 /*iPhone 14 Pro Max*/
 @media only screen
 and (device-width: 430px) 
 and (device-height: 932px) 
-and (-webkit-device-pixel-ratio: 3) { }
+and (-webkit-device-pixel-ratio: 3) {
+  #nav {
+    gap: 0!important;
+    padding: 0 1rem!important;
+  }
+
+  .find {
+    max-height: 600!important;
+    max-width: 100%!important;
+  }
+
+  .findSettings {
+    gap: 0 1.5rem;
+    margin: 20px 0 30px 0;
+  }
+
+  .resultArea {
+    margin-top: 1rem;
+    min-height: 275px!important;
+  }
+  
+  .response {
+    gap: 0 1rem;
+    padding: 0 2rem;
+  }
+
+  .likesContainer {
+   min-height: 85px;
+   max-height: 85px;
+  }
+
+  .likesDelBtn {
+    min-height: 85px;
+    max-height: 85px;
+  }
+
+  .likesImg {
+    margin: 0 1rem;
+  }
+
+  .likesName {
+    font-size: 18px!important;
+    justify-content: flex-start;
+  }
+
+  .bio {
+    gap: 1.5rem 0;
+  }
+
+  .inputDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 389px;
+    // margin: auto;
+  }
+  .file {
+    margin-left: 9rem;
+  }
+}
 
 /*iPhone 14 Pro*/
 @media only screen
     and (width: 393px) 
     and (device-height: 852px)
-    and (-webkit-device-pixel-ratio: 3) { }
+    and (-webkit-device-pixel-ratio: 3) {
+      #nav {
+        gap: 0!important;
+        padding: 0 1rem!important;
+      }
+
+      .find {
+        max-height: 600!important;
+        max-width: 100%!important;
+      }
+
+      .findSettings {
+        gap: 0 1.5rem;
+        margin: 20px 0 30px 0;
+      }
+
+      .resultArea {
+        margin-top: 1rem;
+        min-height: 275px!important;
+      }
+      
+      .response {
+        gap: 0 1rem;
+        padding: 0 2rem;
+      }
+
+      .likesContainer {
+       min-height: 85px;
+       max-height: 85px;
+      }
+
+      .likesDelBtn {
+        min-height: 85px;
+        max-height: 85px;
+      }
+
+      .likesImg {
+        margin: 0 1rem;
+      }
+
+      .likesName {
+        font-size: 18px!important;
+        justify-content: flex-start;
+      }
+
+      .bio {
+        gap: 1.5rem 0;
+      }
+
+      .inputDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 389px;
+        // margin: auto;
+      }
+      .file {
+        margin-left: 9rem;
+      }
+    }
+
+/* laptop 13in+ */
+@media screen 
+and (max-width: 2560px) 
+and (min-width: 1100px) 
+and (-webkit-device-pixel-ratio: 2) {
+  #nav {
+    gap: 1rem!important;
+    padding: 0 1rem!important;
+  }
+
+  .find {
+    justify-content: center;
+    align-items: center;
+    // max-height: 400px!important;
+    // max-width: 700px!important;
+    // min-width: 700px!important;
+    // margin-top: 2rem;
+    // flex-direction: row;
+  }
+
+  // .findContainer {
+  //   justify-content: center;
+  //   align-items: center;
+  //   max-height: 400px!important;
+  //   max-width: 700px!important;
+  //   min-width: 700px!important;
+  //   margin: none;
+  //   flex-direction: row;
+  // }
+
+  .findResult {
+    max-height: 435px;
+    min-width: 700px;
+
+  }
+
+  .resultArea {
+    margin-top: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 0 3rem;
+    max-height: 200px;
+    min-height: 200px;
+  }
+
+  .findSettings {
+    gap: 0 3rem;
+    margin: 20px 0 20px 0;
+  }
+
+  .response {
+    gap: 3rem;
+  }
+}

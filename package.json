@@ -7,7 +7,7 @@
     "build": "webpack",
     "start": "NODE_ENV=production node server/server.js",
     "test": "jest --verbose",
-    "dev": "NODE_ENV=development webpack-dev-server --hot --open & nodemon ./server/server.js"
+    "dev": "NODE_ENV=development webpack-dev-server --hot & nodemon ./server/server.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
@@ -36,6 +36,7 @@
     "pg": "^8.9.0",
     "postgres": "^3.3.3",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.2",
