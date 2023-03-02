@@ -88,7 +88,7 @@ export const Likes = ({user, setGreeting, likes, setLikes}) => {
     else return [];
   }
   const likesArr = makeArr()
-
+  
   return (
     <div className='likes'>
       {likesArr}

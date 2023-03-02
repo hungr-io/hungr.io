@@ -280,6 +280,10 @@ button:hover {
   border-radius: 50%;
 }
 .zipBio{
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -293,6 +297,21 @@ button:hover {
   // height: 5vh;
   background-color: #F6EEE5;
   // margin-top: 20px;
+}
+
+.userBio {
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  width: 70%;
+}
+
+#saveBtn {
+  border: none;
+  width: 60%;
+  height: 5vh;
+  background-color: #c7baff;
+  margin-top: 20px;
 }
 
 // .inputDiv {

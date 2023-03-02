@@ -45,7 +45,7 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurant
     forceUpdate()
   }
 
-  const getLink = () => {
+  const getLink = (url) => {
     window.open(
       restaurants[0]?.url, "_blank");
   }
@@ -93,7 +93,7 @@ export const Find = ({user, setGreeting, setBtnColor, restaurants, setRestaurant
       </div>
       <div className='res'
       // href={restaurants[i]?.url}
-      onClick={getLink}
+      onClick={() => getLink(restaurants[0]?.url)}
       style={{backgroundColor: '#6f7cf2'}}
       >
         <img src={arrowIcon}></img>

@@ -28,8 +28,6 @@ export const Bio = ({user, setUser, setGreeting, zip, setZipcode, img, setImg}) 
       files = URL.createObjectURL(files)
       console.log(files)
       setImg(files);
-
-
     })
   }, [editImg])
 
@@ -69,7 +67,7 @@ console.log(img)
         className='userInfo' placeholder={user}/>
         {/* {user} */}
       </div>
-      <button>Save</button>
+      <button id='saveBtn'>Save</button>
       <Link to='/'>Sign Out</Link>
       {/* <button>Log Out</button> */}
 
