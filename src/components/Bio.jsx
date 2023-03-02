@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-export const Bio = ({user, setGreeting, zip, img, setImg}) => {
+export const Bio = ({user, setGreeting, zip, img, setImg, address, setAddress}) => {
   useEffect(() => {
     setGreeting(`Welcome, ${user}`)
   }, [user]);

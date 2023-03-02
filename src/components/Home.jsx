@@ -6,19 +6,19 @@ import { Find } from './Find.jsx';
 import { Bio } from './Bio.jsx';
 import { Likes } from './Likes.jsx';
 import profileTemp from '/src/assets/profile.png'
-
+//profile.jpg
 
 export const Home = ({selectedPage, user}) => {
   const [greeting, setGreeting] = useState(`Welcome,  ${user}`);
   const [btnColor, setBtnColor] = useState('none');
-  const [zip, setZipcode] = useState('00000');
+  const [zip, setZipcode] = useState('60610');
   const [img, setImg] = useState(profileTemp);
   const [radius, setRadius] = useState(10);
   const [rating, setRating] = useState(1);
   const [cuisine, setCuisine] = useState('');
   const [expense, setExpense] = useState('$');
   const [restaurants, setRestaurants] = useState([]);
-  const [address, setAddress] = useState('2727 Agua Fria Fwy');
+  const [address, setAddress] = useState(null);
   const [userData, setUserData] = useState({name: user, zip: zip, img: 'img'});
   const [likes, setLikes] = useState([]);
 
@@ -142,7 +142,7 @@ export const Home = ({selectedPage, user}) => {
       <Header greeting={greeting} user={user} />
       <div>
         <Routes>
-          <Route path='/bio' element={ <Bio img={img} setImg={setImg} setBtnColor={setBtnColor} setGreeting={setGreeting} user={user} zip={zip}/> } />
+          <Route path='/bio' element={ <Bio address={address} setAddress={setAddress} img={img} setImg={setImg} setBtnColor={setBtnColor} setGreeting={setGreeting} user={user} zip={zip}/> } />
           <Route path='/likes' element={ <Likes setBtnColor={setBtnColor} likes={likes} setLikes={setLikes} setGreeting={setGreeting} user={user}/> } />
           <Route path='/find' element={ <Find setBtnColor={setBtnColor} likes={likes} setLikes={setLikes} rating={rating} expense={expense} setExpense={setExpense} 
             setRestaurants={setRestaurants} setGreeting={setGreeting} setRating={setRating} user={user} restaurants={restaurants}/> } />
