@@ -42,7 +42,7 @@ findController.findNew = (req, res, next) => {
         }
       };
       
-      fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&term=food&radius=${distance}&categories=${type}&price=${price}&sort_by=rating&limit=20`, options)
+      fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&term=food&radius=${distance}&price=${price}&sort_by=rating&limit=20`, options) //categories=${type}&
         .then(data => data.json())
         .then(data => {
           data.businesses.forEach(restaurant => {
